@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://burgdup52wxkg"]
+
+[ext_resource type="Script" path="res://addons/MultiplayCore/MultiPlay.gd" id="1_fk00c"]
+[ext_resource type="PackedScene" uid="uid://giv7tkm0quao" path="res://characters/Player.tscn" id="2_6afp6"]
+[ext_resource type="Script" path="res://addons/MultiplayCore/net_protocols/ENetProtocol.gd" id="4_vm3jp"]
+
+[node name="MultiPlayCore" type="Node"]
+script = ExtResource("1_fk00c")
+max_players = 4
+player_scene = ExtResource("2_6afp6")
+debug_gui_enabled = false
+
+[node name="ENetProtocol" type="Node" parent="."]
+script = ExtResource("4_vm3jp")
