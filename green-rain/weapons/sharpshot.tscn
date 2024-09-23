@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxv2yxrixgvsa"]
+
+[sub_resource type="GDScript" id="GDScript_1pcve"]
+script/source = "extends Weapon
+
+func fire():
+	print(\"TEST\")
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_ngqq2"]
+size = Vector3(0.25, 0.25, 1)
+
+[node name="Sharpshot" type="Node3D"]
+script = SubResource("GDScript_1pcve")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ngqq2")

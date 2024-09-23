@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2ofhvcxchcj"]
+
+[ext_resource type="Script" uid="uid://c54qt8uxl3a4r" path="res://scripts/DropoffArea.os" id="1_tgini"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rb2y"]
+size = Vector2(32, 32)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_tgini")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_4rb2y")
+debug_color = Color(0.776471, 0.592157, 0, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

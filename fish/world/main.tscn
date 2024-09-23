@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgm1ny5hl7qa0"]
+
+[ext_resource type="PackedScene" uid="uid://lo4egyy4nmah" path="res://world/MAP.tscn" id="1_8s35l"]
+[ext_resource type="PackedScene" uid="uid://p7qb5ytt17yr" path="res://world/time_manager.tscn" id="2_o3c4j"]
+
+[node name="MAIN" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_8s35l")]
+
+[node name="TimeManager" parent="." instance=ExtResource("2_o3c4j")]

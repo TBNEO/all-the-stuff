@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://p7qb5ytt17yr"]
+
+[ext_resource type="Script" path="res://world/time_manager.gd" id="1_feiv6"]
+
+[node name="TimeManager" type="Node"]
+script = ExtResource("1_feiv6")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TIME" type="Timer" parent="."]
+
+[connection signal="timeout" from="TIME" to="." method="_on_time_timeout"]

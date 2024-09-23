@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://giv7tkm0quao"]
+
+[ext_resource type="Script" path="res://characters/player.gd" id="1_365on"]
+[ext_resource type="PackedScene" uid="uid://cxv2yxrixgvsa" path="res://weapons/sharpshot.tscn" id="2_0jd07"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_snk3y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2pmcg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3rrce"]
+size = Vector3(1.25, 0.25, 0.25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tyxbg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("playermesh:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("pivot/WeaponNode:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("pivot:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_365on")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_snk3y")
+
+[node name="pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="pivot"]
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="pivot/SpringArm3D"]
+current = true
+
+[node name="WeaponNode" type="Node3D" parent="pivot"]
+
+[node name="Sharpshot" parent="pivot/WeaponNode" instance=ExtResource("2_0jd07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="playermesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2pmcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="playermesh"]
+mesh = SubResource("BoxMesh_3rrce")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_tyxbg")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Dashtime" type="Timer" parent="Node"]
+wait_time = 0.05
+one_shot = true
+
+[node name="DashCD" type="Timer" parent="Node"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Node/Dashtime" to="." method="_on_dashtime_timeout"]
+[connection signal="timeout" from="Node/DashCD" to="." method="_on_dash_cd_timeout"]

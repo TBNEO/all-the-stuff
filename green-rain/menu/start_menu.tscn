@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxx4j7n3ryes1"]
+
+[ext_resource type="Script" path="res://menu/start_menu.gd" id="1_iw01e"]
+[ext_resource type="PackedScene" uid="uid://d415qxkfavos" path="res://menu/lobby.tscn" id="2_y6ps8"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_iw01e")
+
+[node name="StartMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HOST" type="Button" parent="StartMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "HOST
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="JOIN" type="Button" parent="StartMenu/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="ADRESS" type="LineEdit" parent="StartMenu/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "127.0.0.1:4200"
+expand_to_text_length = true
+
+[node name="lobby" parent="." instance=ExtResource("2_y6ps8")]
+visible = false
+top_level = true
+
+[connection signal="button_down" from="StartMenu/Panel/VBoxContainer/HOST" to="." method="_on_host_button_down"]
+[connection signal="button_down" from="StartMenu/Panel/VBoxContainer/HBoxContainer/JOIN" to="." method="_on_join_button_down"]

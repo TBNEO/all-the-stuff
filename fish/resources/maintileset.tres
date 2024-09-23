@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b02lwaboogyh"]
+
+[ext_resource type="Texture2D" uid="uid://ci5mw1motg4qt" path="res://sprites/tiles.png" id="1_j0i7w"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0t04n"]
+texture = ExtResource("1_j0i7w")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 3
+0:0/animation_columns = 2
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -8)
+0:0/0/z_index = 1
+0:1/next_alternative_id = 3
+0:1/animation_columns = 4
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, -8)
+0:1/0/custom_data_0 = true
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(32, 16)
+custom_data_layer_0/name = "blocked"
+custom_data_layer_0/type = 1
+sources/1 = SubResource("TileSetAtlasSource_0t04n")

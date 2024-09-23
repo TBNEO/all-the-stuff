@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://4q3vhcgw5tw3"]
+
+[ext_resource type="PackedScene" uid="uid://bj3ar7wghmgq2" path="res://scenes/player.tscn" id="1_wq3ux"]
+[ext_resource type="Texture2D" uid="uid://bifri02i304mx" path="res://icon.svg" id="2_2v82r"]
+[ext_resource type="PackedScene" uid="uid://dfj7yfwc1wjqa" path="res://scenes/pickuparea.tscn" id="3_hqnyh"]
+[ext_resource type="PackedScene" uid="uid://cq2ofhvcxchcj" path="res://scenes/dropoffarea.tscn" id="4_6lqky"]
+[ext_resource type="PackedScene" uid="uid://chqbcatoscvix" path="res://scenes/enemyA.tscn" id="5_hfila"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_df3av"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jdamj"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eeuxl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_481j6"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vwmgr"]
+vertices = PackedVector2Array(779.141, -45.1016, 791.844, 804.07, -45.0625, 809.922, -50.9297, -53.8906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-61, -64, 789, -55, 802, 814, -55, 820)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="MAIN" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.27451, 0.27451, 0.27451, 1)
+scale = Vector2(6, 6)
+texture = ExtResource("2_2v82r")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_df3av")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_jdamj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(768, 768)
+shape = SubResource("WorldBoundaryShape2D_eeuxl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(768, 768)
+shape = SubResource("WorldBoundaryShape2D_481j6")
+
+[node name="DropoffZones" type="Node" parent="."]
+
+[node name="Area2D2" parent="DropoffZones" instance=ExtResource("4_6lqky")]
+position = Vector2(256, 256)
+
+[node name="Area2D3" parent="DropoffZones" instance=ExtResource("4_6lqky")]
+position = Vector2(512, 256)
+
+[node name="Area2D5" parent="DropoffZones" instance=ExtResource("4_6lqky")]
+position = Vector2(256, 512)
+
+[node name="Area2D6" parent="DropoffZones" instance=ExtResource("4_6lqky")]
+position = Vector2(512, 512)
+
+[node name="PickupArea" parent="." instance=ExtResource("3_hqnyh")]
+position = Vector2(384, 64)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(17, 12)
+navigation_polygon = SubResource("NavigationPolygon_vwmgr")
+
+[node name="enemyA" parent="." instance=ExtResource("5_hfila")]
+position = Vector2(250, 383)
+
+[node name="Player" parent="." instance=ExtResource("1_wq3ux")]
+position = Vector2(519, 385)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://hhs0c77mrdpa"]
+
+[ext_resource type="Script" uid="uid://w80a1jsmuv86" path="res://scripts/hitbox.os" id="1_3bdla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cymsa"]
+size = Vector2(10, 10)
+
+[node name="Hitbox" type="Area2D"]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_3bdla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cymsa")
+debug_color = Color(0.329412, 1, 0, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

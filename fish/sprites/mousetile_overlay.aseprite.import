@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://2r2pckr2b87u"
+path="res://.godot/imported/mousetile_overlay.aseprite-5174ea51590554ba2a1d2f31f3885858.res"
+
+[deps]
+
+source_file="res://sprites/mousetile_overlay.aseprite"
+dest_files=["res://.godot/imported/mousetile_overlay.aseprite-5174ea51590554ba2a1d2f31f3885858.res"]
+
+[params]
+
